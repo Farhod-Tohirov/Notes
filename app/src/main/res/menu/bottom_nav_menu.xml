@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/addImage"
+        android:icon="@drawable/ic_image"
+        android:title="@string/add_image" />
+
+<!--    <item
+        android:id="@+id/changeTheme"
+        android:icon="@drawable/ic_theme"
+        android:title="@string/change_theme" />-->
+
+
+    <item
+        android:id="@+id/deleteNote"
+        android:icon="@drawable/ic_trash"
+        android:title="@string/delete" />
+
+</menu>

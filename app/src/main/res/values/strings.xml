@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Notes</string>
+    <string name="image_of_note">Image of note</string>
+    <string name="done">Done</string>
+    <string name="add_image">Add image</string>
+    <string name="delete">Delete</string>
+    <string name="description">description</string>
+    <string name="change_theme">Change theme</string>
+    <string name="delete_all">Delete All</string>
+    <string name="notes">Notes</string>
+</resources>

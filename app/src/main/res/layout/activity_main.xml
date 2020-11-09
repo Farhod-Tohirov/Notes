@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_back"
+    tools:context=".ui.screen.main.MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_back"
+            app:elevation="0dp"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:orientation="vertical">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/mainToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_gravity="top"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    app:menu="@menu/main_menu" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_gravity="top|start"
+                    android:gravity="start"
+                    android:overScrollMode="never"
+                    android:paddingLeft="24dp"
+                    android:paddingTop="4dp"
+                    android:paddingRight="24dp"
+                    android:text="@string/notes"
+                    android:textColor="#F1AF07"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/vag_rounded_bt" />
+
+                <!--<ImageView
+                    android:id="@+id/main_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|end"
+                    style="@style/ImageButton"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_more"
+                    android:layout_marginEnd="16dp" />
+-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|start"
+                    android:layout_marginTop="4dp"
+                    app:boxBackgroundColor="#FFF"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:endIconMode="clear_text"
+                    app:hintEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="16dp"
+                        android:id="@+id/search"
+                        android:layout_marginRight="16dp"
+                        android:background="@drawable/edit_text_back"
+                        android:drawableStart="@drawable/ic_loupe"
+                        android:drawableLeft="@drawable/ic_loupe"
+                        android:drawablePadding="8dp"
+                        android:ellipsize="end"
+                        android:hint="Search notes"
+                        android:imeOptions="actionSearch"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="4dp"
+                        android:paddingRight="16dp"
+                        android:paddingBottom="4dp"
+                        android:scrollHorizontally="true"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/color_comment"
+                        app:fontFamily="@font/vag_rounded_bt" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </FrameLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:listitem="@layout/note_item" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginBottom="18dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="#FCC100"
+        app:layout_anchor="@id/list"
+        app:layout_anchorGravity="bottom|end"
+        app:tint="#FFF" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
