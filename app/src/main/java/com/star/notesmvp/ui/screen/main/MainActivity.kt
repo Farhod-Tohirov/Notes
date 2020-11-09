@@ -150,4 +150,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
             adapter.notifyItemRemoved(index)
         }
     }
+
+    override fun hideLoading() {
+        binding.progressBar.visibility = View.GONE
+    }
 }

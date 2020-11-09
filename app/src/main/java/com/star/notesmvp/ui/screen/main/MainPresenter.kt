@@ -11,6 +11,7 @@ class MainPresenter(private val view: MainContract.View, private val model: Main
     override fun init() {
         view.loadViews()
         model.getNotes {
+            view.hideLoading()
             view.loadNotes(it)
         }
     }

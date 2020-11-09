@@ -24,6 +24,7 @@ interface MainContract {
         fun addNewNote(note: NoteData)
         fun updateNote(note: NoteData)
         fun deleteNote(note: NoteData)
+        fun hideLoading()
     }
 
     interface Presenter {

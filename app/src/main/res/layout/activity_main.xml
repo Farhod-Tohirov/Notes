@@ -51,17 +51,6 @@
                     android:textSize="24sp"
                     app:fontFamily="@font/vag_rounded_bt" />
 
-                <!--<ImageView
-                    android:id="@+id/main_menu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top|end"
-                    style="@style/ImageButton"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_more"
-                    android:layout_marginEnd="16dp" />
--->
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -128,5 +117,11 @@
         app:layout_anchor="@id/list"
         app:layout_anchorGravity="bottom|end"
         app:tint="#FFF" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

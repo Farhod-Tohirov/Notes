@@ -5,6 +5,7 @@ import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -109,19 +110,16 @@ class AddNoteFragment : Fragment() {
 
     private fun deleteNote() {
         if (noteData != null) {
-            androidx.appcompat.app.AlertDialog.Builder(requireActivity())
-                .setTitle("Do you want to delete this image?")
-                .setPositiveButton("YES") { dialog, _ ->
-                    (activity as MainActivity).deleteNote(noteData!!)
-                    dialog.dismiss()
+            Log.d("T12T", "note = $noteData")
+            makeSuggestDialog("Do you want to delete this Note?") { confirmation ->
+                if (confirmation) {
+                    (activity as MainActivity).deleteNote(noteData ?: return@makeSuggestDialog)
+                    finishFragment()
                 }
-                .setNegativeButton("NO") { dialog, _ ->
-                    dialog.dismiss()
-                }
-                .create()
-                .show()
+            }
+        } else{
+            finishFragment()
         }
-        finishFragment()
     }
 
     private fun addNoteDataOrNot() {
@@ -182,5 +180,19 @@ class AddNoteFragment : Fragment() {
             ls.add(path)
             adapter.submitList(ls.toMutableList())
         }
+    }
+
+    private fun makeSuggestDialog(text: String, block: (Boolean) -> Unit) {
+        androidx.appcompat.app.AlertDialog.Builder(requireActivity())
+            .setTitle(text)
+            .setPositiveButton("YES") { dialog, _ ->
+                block(true)
+                dialog.dismiss()
+            }
+            .setNegativeButton("NO") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+            .show()
     }
 }

@@ -24,7 +24,7 @@
             android:contentDescription="@string/image_of_note"
             android:maxHeight="250dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/temp_image"
+            android:src="@drawable/ic_picture"
             app:layout_constraintBottom_toTopOf="@id/title"
             app:layout_constraintTop_toTopOf="parent" />
 
