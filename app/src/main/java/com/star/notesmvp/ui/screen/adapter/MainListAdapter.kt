@@ -49,19 +49,27 @@ class MainListAdapter : RecyclerView.Adapter<MainListAdapter.ViewHolder>(), Filt
 
         fun bind() {
             val data = list[adapterPosition]
-            if (data.images.isEmpty() || ((data.images[0] == "") && (data.images.size == 1))) {
-                binding.image.visibility = View.GONE
-            } else {
-                val THUMBSIZE = 256
-                val path = if (data.images[0] != "") data.images[0] else data.images[1]
 
+            val THUMBSIZE = 256
+            var path = ""
+            data.images.forEach { image ->
+                if (path == "") {
+                    path = image
+                    return@forEach
+                }
+            }
+
+            if (path != "") {
                 val thumbImage = ThumbnailUtils.extractThumbnail(
                     BitmapFactory.decodeFile(path),
                     THUMBSIZE, THUMBSIZE
                 )
                 Glide.with(binding.image).load(thumbImage).centerCrop()
                     .placeholder(R.drawable.ic_picture).into(binding.image)
+            } else {
+                binding.image.visibility = View.GONE
             }
+
             binding.title.text = data.title
             binding.subTitle.text = data.description
             val savedDate = TimeConverter.convertLongToTime(data.savedDate)
