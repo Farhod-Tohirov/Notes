@@ -1,17 +1,19 @@
 package com.star.notesmvp.ui.screen.main
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.star.notesmvp.ui.screen.adapter.MainListAdapter
 import com.star.notesmvp.R
 import com.star.notesmvp.data.local.room.entity.NoteData
 import com.star.notesmvp.databinding.ActivityMainBinding
+import com.star.notesmvp.ui.screen.adapter.MainListAdapter
 import com.star.notesmvp.ui.screen.add_note.AddNoteFragment
 import com.star.notesmvp.utils.NoteDataDiffUtilCallback
 
@@ -33,8 +35,13 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     override fun loadViews() {
         binding.list.adapter = adapter
-        binding.list.layoutManager =
-            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        if (this.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            binding.list.layoutManager =
+                StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        } else {
+            binding.list.layoutManager =
+                StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL)
+        }
 
         binding.mainToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
@@ -154,4 +161,24 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     override fun hideLoading() {
         binding.progressBar.visibility = View.GONE
     }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        presenter.init()
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            adapter.notifyDataSetChanged()
+            binding.list.layoutManager =
+                StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL)
+        } else {
+            adapter.notifyDataSetChanged()
+            binding.list.layoutManager =
+                StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        }
+    }
+
 }
